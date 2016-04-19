@@ -10,6 +10,9 @@ RUN pip install virtualenv streamparse
 RUN mkdir -p /data/virtualenvs/
 RUN mkdir -p /var/log/storm/streamparse
 
+RUN mkdir -p /root/.ssh/
+COPY id_rsa.pub /root/.ssh/authorized_keys
+
 EXPOSE 6700
 EXPOSE 6701
 EXPOSE 6702
