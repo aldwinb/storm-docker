@@ -38,4 +38,4 @@ RUN echo nodaemon=true | tee -a /etc/supervisord.conf
 RUN echo [include] | tee -a /etc/supervisord.conf
 RUN echo files=/etc/supervisord.d/*.conf | tee -a /etc/supervisord.conf
 
-EXPOSE 22
+#EXPOSE 22
