@@ -10,6 +10,8 @@ nimbus:
     - "49772:3772"
     - "49627:6627"
     #- "22"
+  volumes:
+    - /Users/abarredo/Projects/CondeNast/4d-poc-pipeline-python:/tmp/storm/app
   links: 
     - zookeeper:zk
 supervisor:
@@ -17,6 +19,8 @@ supervisor:
   ports:
     - "8000"
     #- "22"
+  volumes:
+    - /Users/abarredo/Projects/CondeNast/4d-poc-pipeline-python:/tmp/storm/app
   links:
     - nimbus:nimbus
     - zookeeper:zk
