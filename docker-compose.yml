@@ -11,7 +11,8 @@ nimbus:
     - "49627:6627"
     #- "22"
   volumes:
-    - /Users/abarredo/Projects/CondeNast/4d-poc-pipeline-python:/tmp/storm/app
+    - $HOME/Projects/CondeNast/4d-poc-pipeline-python:/app
+    - $HOME/Projects/CondeNast/4d-poc-pipeline-python/modules:/workspace/modules
   links: 
     - zookeeper:zk
 supervisor:
@@ -20,7 +21,7 @@ supervisor:
     - "8000"
     #- "22"
   volumes:
-    - /Users/abarredo/Projects/CondeNast/4d-poc-pipeline-python:/tmp/storm/app
+    - $HOME/Projects/CondeNast/4d-poc-pipeline-python/modules:/workspace/modules
   links:
     - nimbus:nimbus
     - zookeeper:zk
