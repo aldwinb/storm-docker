@@ -9,10 +9,9 @@ nimbus:
     - "49773:3773"
     - "49772:3772"
     - "49627:6627"
-    #- "22"
+    - "22"
   volumes:
-    - $HOME/Projects/CondeNast/4d-poc-pipeline-python:/app
-    - $HOME/Projects/CondeNast/4d-poc-pipeline-python/modules:/workspace/modules
+    - /tmp/venv:/venv
   links: 
     - zookeeper:zk
 supervisor:
@@ -21,7 +20,7 @@ supervisor:
     - "8000"
     #- "22"
   volumes:
-    - $HOME/Projects/CondeNast/4d-poc-pipeline-python/modules:/workspace/modules
+    - /tmp/venv:/venv
   links:
     - nimbus:nimbus
     - zookeeper:zk

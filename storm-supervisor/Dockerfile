@@ -10,7 +10,6 @@ EXPOSE 8000
 RUN /usr/bin/config-supervisord.sh supervisor
 RUN /usr/bin/config-supervisord.sh logviewer
 
-ENV PYTHONPATH=/workspace/modules
 RUN mkdir -p /var/log/storm/streamparse
 
 CMD /usr/bin/start-supervisor.sh

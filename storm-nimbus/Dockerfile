@@ -7,15 +7,10 @@ RUN /usr/bin/config-supervisord.sh drpc
 EXPOSE 6627
 EXPOSE 3772
 EXPOSE 3773
+EXPOSE 22
 ADD start-supervisor.sh /usr/bin/start-supervisor.sh
 
 RUN curl -o /usr/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
 RUN chmod a+x /usr/bin/lein
-
-RUN yum update -y && yum install -y gcc \
-  python-devel
-RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
-RUN python /tmp/get-pip.py
-RUN pip install streamparse
 
 CMD /usr/bin/start-supervisor.sh
