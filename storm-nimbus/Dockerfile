@@ -1,6 +1,8 @@
 FROM wurstmeister/storm:0.9.4
 MAINTAINER Wurstmeister
 
+RUN yum update -y && yum install -y openssh-clients
+
 RUN /usr/bin/config-supervisord.sh nimbus 
 RUN /usr/bin/config-supervisord.sh drpc
 
