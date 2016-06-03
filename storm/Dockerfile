@@ -19,7 +19,11 @@ ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.101-2.6.6.1.el7_2.x86_64/jre
 
 RUN echo 'root:wurstmeister' | chpasswd
 RUN mkdir /var/run/sshd
-RUN sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/#PermitRootLogin yes/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' \
+  && ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' \
+  && ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''
+
 
 RUN wget -q -O - http://mirrors.sonic.net/apache/storm/apache-storm-0.9.4/apache-storm-0.9.4.tar.gz | tar -xzf - -C /opt
 
