@@ -2,14 +2,15 @@ FROM centos:centos7.2.1511
 
 MAINTAINER Wurstmeister
 
-RUN yum update -y
-RUN yum install -y unzip \
+RUN yum update -y && yum install -y unzip \
   java-1.7.0-openjdk \
   wget \
   openssh-server
 
-RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py
-RUN python /tmp/get-pip.py
+RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py \
+  && python /tmp/get-pip.py \
+  && rm -rf /tmp/get-pip.py
+
 RUN pip install supervisor
 
 RUN mkdir -p /etc/supervisord.d
@@ -24,10 +25,10 @@ RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' \
   && ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' \
   && ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''
 
+ENV STORM_HOME /opt/apache-storm-0.9.4
 
 RUN wget -q -O - http://mirrors.sonic.net/apache/storm/apache-storm-0.9.4/apache-storm-0.9.4.tar.gz | tar -xzf - -C /opt
 
-ENV STORM_HOME /opt/apache-storm-0.9.4
 RUN groupadd storm; useradd --gid storm --home-dir /home/storm --create-home --shell /bin/bash storm; chown -R storm:storm $STORM_HOME; mkdir /var/log/storm ; chown -R storm:storm /var/log/storm
 
 RUN ln -s $STORM_HOME/bin/storm /usr/bin/storm
