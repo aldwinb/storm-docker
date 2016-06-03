@@ -1,15 +1,12 @@
 FROM wurstmeister/storm:0.9.4
 MAINTAINER Wurstmeister
 
-RUN yum update -y && yum install -y openssh-clients
-
 RUN /usr/bin/config-supervisord.sh nimbus 
 RUN /usr/bin/config-supervisord.sh drpc
 
 EXPOSE 6627
 EXPOSE 3772
 EXPOSE 3773
-EXPOSE 22
 ADD start-supervisor.sh /usr/bin/start-supervisor.sh
 
 RUN curl -o /usr/bin/lein https://raw.githubusercontent.com/technomancy/leiningen/stable/bin/lein
