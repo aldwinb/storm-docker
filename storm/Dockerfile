@@ -3,7 +3,7 @@ FROM centos:centos7.2.1511
 MAINTAINER Wurstmeister
 
 RUN yum update -y && yum install -y unzip \
-  java-1.7.0-openjdk \
+  java-1.8.0-openjdk \
   wget \
   openssh-server
 
@@ -16,7 +16,7 @@ RUN pip install supervisor
 RUN mkdir -p /etc/supervisord.d
 RUN echo_supervisord_conf > /etc/supervisord.conf
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.7.0-openjdk-1.7.0.101-2.6.6.1.el7_2.x86_64/jre
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.91-0.b14.el7_2.x86_64/jre/
 
 RUN echo 'root:wurstmeister' | chpasswd
 RUN mkdir /var/run/sshd
