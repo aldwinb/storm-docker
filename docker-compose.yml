@@ -19,6 +19,8 @@ supervisor:
   links:
     - nimbus:nimbus
     - zookeeper:zk
+  volumes:
+    - $HOME/Projects/CondeNast/.aws:/root/.aws
 ui:
   image: wurstmeister/storm-ui
   ports:

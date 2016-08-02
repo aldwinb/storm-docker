@@ -12,10 +12,19 @@ RUN yum update -y && yum install -y openssh-clients \
   gcc-c++ \
   boost-devel
 
+RUN wget --quiet -O /usr/local/bin/jq http://stedolan.github.io/jq/download/linux64/jq \
+  && chmod +x /usr/local/bin/jq
+
+RUN pip install --upgrade awscli
+
+COPY create-aws-sts-token.sh /usr/local/bin/create-aws-sts-token
+
+RUN chmod +x /usr/local/bin/create-aws-sts-token \
+  && mkdir /root/.aws \
+  && mkdir -p /var/log/storm/streamparse
+
 RUN /usr/bin/config-supervisord.sh supervisor
 RUN /usr/bin/config-supervisord.sh logviewer
-
-RUN mkdir -p /var/log/storm/streamparse
 
 CMD /usr/bin/start-supervisor.sh
 
