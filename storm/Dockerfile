@@ -16,7 +16,7 @@ RUN pip install supervisor
 RUN mkdir -p /etc/supervisord.d
 RUN echo_supervisord_conf > /etc/supervisord.conf
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.91-1.b14.el7_2.x86_64/jre/
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.101-3.b13.el7_2.x86_64/jre/
 
 RUN echo 'root:wurstmeister' | chpasswd
 RUN mkdir /var/run/sshd

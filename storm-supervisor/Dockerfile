@@ -8,7 +8,9 @@ EXPOSE 6703
 EXPOSE 8000
 EXPOSE 22
 
-RUN yum update -y && yum install -y openssh-clients
+RUN yum update -y && yum install -y openssh-clients \
+  gcc-c++ \
+  boost-devel
 
 RUN /usr/bin/config-supervisord.sh supervisor
 RUN /usr/bin/config-supervisord.sh logviewer
