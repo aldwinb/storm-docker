@@ -25,9 +25,9 @@ RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key -N '' \
   && ssh-keygen -t ecdsa -f /etc/ssh/ssh_host_ecdsa_key -N '' \
   && ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ''
 
-ENV STORM_HOME /opt/apache-storm-0.9.4
+ENV STORM_HOME /opt/apache-storm-0.10.1
 
-RUN wget -q -O - http://mirrors.sonic.net/apache/storm/apache-storm-0.9.4/apache-storm-0.9.4.tar.gz | tar -xzf - -C /opt
+RUN wget -q -O - http://mirrors.sonic.net/apache/storm/apache-storm-0.10.1/apache-storm-0.10.1.tar.gz | tar -xzf - -C /opt
 
 RUN groupadd storm; useradd --gid storm --home-dir /home/storm --create-home --shell /bin/bash storm; chown -R storm:storm $STORM_HOME; mkdir /var/log/storm ; chown -R storm:storm /var/log/storm
 

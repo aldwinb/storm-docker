@@ -1,4 +1,4 @@
-FROM wurstmeister/storm:0.9.4
+FROM wurstmeister/storm:0.10.1
 MAINTAINER Wurstmeister
 
 EXPOSE 6700
