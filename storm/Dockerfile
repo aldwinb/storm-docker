@@ -3,9 +3,12 @@ FROM centos:centos7.2.1511
 MAINTAINER Wurstmeister
 
 RUN yum update -y && yum install -y unzip \
-  java-1.8.0-openjdk \
+  java-1.8.0-openjdk-1.8.0.121-0.b13.el7_3 \
   wget \
-  openssh-server
+  openssh-server \
+  openssl-devel \
+  libffi-devel \
+  libffi
 
 RUN wget -O /tmp/get-pip.py https://bootstrap.pypa.io/get-pip.py \
   && python /tmp/get-pip.py \
@@ -16,7 +19,7 @@ RUN pip install supervisor
 RUN mkdir -p /etc/supervisord.d
 RUN echo_supervisord_conf > /etc/supervisord.conf
 
-ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.101-3.b13.el7_2.x86_64/jre/
+ENV JAVA_HOME /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.121-0.b13.el7_3.x86_64/jre/
 
 RUN echo 'root:wurstmeister' | chpasswd
 RUN mkdir /var/run/sshd
